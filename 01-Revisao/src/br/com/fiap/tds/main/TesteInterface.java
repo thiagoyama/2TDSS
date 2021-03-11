@@ -4,6 +4,8 @@ import br.com.fiap.tds.bean.Funcionario;
 import br.com.fiap.tds.dao.FuncionarioDao;
 import br.com.fiap.tds.dao.FuncionarioMySqlDao;
 
+// JSP <-> Servlet FuncionarioDao <-> DAO <-> Banco de dados
+
 public class TesteInterface {
 
 	public static void main(String[] args) {

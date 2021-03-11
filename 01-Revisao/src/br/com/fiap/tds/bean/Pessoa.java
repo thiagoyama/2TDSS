@@ -21,6 +21,8 @@ public class Pessoa {
 	
 	private boolean deficiente;
 	
+	private Genero genero; //CTRL + 1
+	
 	//Construtores
 	public Pessoa(String nome, int idade) {
 		this.nome = nome;
@@ -71,6 +73,14 @@ public class Pessoa {
 
 	public void setIdade(int idade) {
 		this.idade = idade;
+	}
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
 	}
 	
 }
