@@ -9,6 +9,7 @@ import br.com.fiap.exception.SaldoInsuficienteException;
 
 public class Exercicio06 {
 
+	@SuppressWarnings("all")
 	public static void main(String[] args) {
 		//Instanciar uma conta corrente
 		ContaCorrente cc = new ContaCorrente(
@@ -20,7 +21,7 @@ public class Exercicio06 {
 		
 		//Chamar o método retirar
 		try {
-			cp.retirar(80);
+			cp.retirar(800);
 			System.out.println("Saque foi realizado!");
 		} catch(SaldoInsuficienteException e) {
 			System.out.println(e.getMessage());
