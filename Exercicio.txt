@@ -1,0 +1,20 @@
+No mesmo projeto:
+
+Sequence: SQ_TB_FUNCIONARIO
+
+Mapear a tabela:
+
+TB_FUNCIONARIO
+-----
+*cd_funcionario (PK)	NUMBER
+*nm_funcionario		VARCHAR(100)
+*ds_tipo_contrato	VARCHAR -> Enum no java (CLT,PJ,FLEX)
+*dt_contratacao		DATE
+vl_salario		NUMBER
+fl_foto			BLOB
+ds_cargo		VARCHAR(50)
+st_deficiente		NUMBER -> Boolean no java
+
+
+
+
