@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -70,6 +71,12 @@ public class Endereco {
 		this.tipo = tipo;
 	}
 
+	//Método que é executado automáticamente antes de cadastrar
+	@PrePersist
+	public void executar() {
+		System.out.println("Cadastrando um endereço...");
+	}
+	
 	@Override
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
