@@ -3,6 +3,7 @@ package br.com.fiap.tds.dao.impl;
 
 import javax.persistence.EntityManager;
 import br.com.fiap.tds.dao.GenericDao;
+import br.com.fiap.tds.entity.Fornecedor;
 import br.com.fiap.tds.exception.CommitException;
 import br.com.fiap.tds.exception.EntityNotFoundException;
 
