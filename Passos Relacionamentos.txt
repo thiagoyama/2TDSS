@@ -11,3 +11,25 @@ Um-para-um:
 	- Adicionar a anotação @OneToOne com o mappedBy com o nome do atributo definido em 1;
 	
 	
+Muitos-para-um
+	1 - Unidirecional
+	- Ir na classe que mapeia a FK
+	- Adicionar o atributo de referência para a classe da relação e adicionar a anotação @ManyToOne
+	- (Opcional) Adicionar o @JoinColumnn para configurar a coluna da FK
+	
+	2 - Bidirecional:
+	- Ir na classe que não mapeia a FK
+	- Adicionar o atributo (Lista) de referência para a classe da relação
+	- Adicionar a anotação @OneToMany com o mappedBy com o nome do atributo definido em 1;
+	
+Muitos-para-muitos
+	1 - Unidirecional
+	- Escolher a classe que irá mapear a tabela associativa
+	- Adicionar o atributo (Lista) de referência para a classe da relação e adicionar a anotação @ManyToMany
+	- (Opcional) Adicionar o @JoinTable para configurar a tabela associativa
+	
+	2 - Bidirecional
+	- Ir na classe que não está mapeamento a tabela associativa
+	- Adicicionar o atributo (Lista) de referência para a classe da relação
+	- Adicionar a anotação @ManyToMany com o mappedBy com o nome do atributo definido em 1;
+	

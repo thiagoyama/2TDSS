@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 
 import br.com.fiap.tds.dao.GrupoChallengeDao;
 import br.com.fiap.tds.dao.impl.GrupoChallengeDaoImpl;
+import br.com.fiap.tds.entity.Aluno;
 import br.com.fiap.tds.entity.GrupoChallenge;
 import br.com.fiap.tds.exception.EntityNotFoundException;
 import br.com.fiap.tds.singleton.EntityManagerFactorySingleton;
@@ -27,6 +28,13 @@ public class PesquisaTeste {
 			
 			//Exibir o nome do projeto
 			System.out.println(grupo.getProjeto().getNome());
+			
+			//Exibir o nome dos alunos que pertencem ao grupo
+			for (Aluno aluno : grupo.getAlunos()) {
+				System.out.println(aluno.getNome());
+				//Exibir o nome dos cursos dos alunos
+				
+			}
 			
 		}catch (EntityNotFoundException e) {
 			System.out.println(e.getMessage());
