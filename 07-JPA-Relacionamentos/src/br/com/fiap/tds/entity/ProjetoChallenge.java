@@ -2,6 +2,7 @@ package br.com.fiap.tds.entity;
 
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -48,8 +49,99 @@ public class ProjetoChallenge {
 	
 	//Mapear o relacionamento um-para-um bidirecional
 	//mappedBy -> sempre utilizado no bidirecional
-	//Define o atributo que mapeia a relação no BD
-	@OneToOne(mappedBy = "projeto")
+	//mappedBy -> nome do atributo que mapeia a FK
+	@OneToOne(mappedBy = "projeto", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private GrupoChallenge grupo;
+
+	public ProjetoChallenge() {}
 	
+	public ProjetoChallenge(String nome, String descricao, 
+			Calendar dataInicio, Calendar dataFim, TipoProjeto tipo,
+			Float nota) {
+		super();
+		this.nome = nome;
+		this.descricao = descricao;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.tipo = tipo;
+		this.nota = nota;
+	}
+
+	public ProjetoChallenge(int codigo, String nome, String descricao, 
+			Calendar dataInicio, Calendar dataFim,
+			TipoProjeto tipo, Float nota) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.tipo = tipo;
+		this.nota = nota;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Calendar getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Calendar dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Calendar getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Calendar dataFim) {
+		this.dataFim = dataFim;
+	}
+
+	public TipoProjeto getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoProjeto tipo) {
+		this.tipo = tipo;
+	}
+
+	public Float getNota() {
+		return nota;
+	}
+
+	public void setNota(Float nota) {
+		this.nota = nota;
+	}
+
+	public GrupoChallenge getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(GrupoChallenge grupo) {
+		this.grupo = grupo;
+	}
+
 }

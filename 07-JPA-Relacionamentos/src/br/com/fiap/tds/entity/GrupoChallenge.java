@@ -1,7 +1,9 @@
 package br.com.fiap.tds.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,8 +26,47 @@ public class GrupoChallenge {
 	private String nome;
 	
 	//Mapear o relacionamento um-para-um
-	@OneToOne
-	@JoinColumn(name = "cd_projeto", nullable = false)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "cd_projeto")
 	private ProjetoChallenge projeto;
+	
+	public GrupoChallenge() {}
+	
+	public GrupoChallenge(String nome, ProjetoChallenge projeto) {
+		super();
+		this.nome = nome;
+		this.projeto = projeto;
+	}
 
+	public GrupoChallenge(int codigo, String nome, ProjetoChallenge projeto) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.projeto = projeto;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public ProjetoChallenge getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(ProjetoChallenge projeto) {
+		this.projeto = projeto;
+	}
+	
 }

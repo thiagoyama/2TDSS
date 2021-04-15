@@ -1,0 +1,13 @@
+
+Um-para-um:
+	1 - Unidirecional:
+	- Ir na classe que mapeia a FK
+	- Adicionar o atributo de referência para a classe da relação e adicionar a anotação @OneToOne
+	- (Opcional) Adicionar o @JoinColumnn para configurar a coluna da FK
+	
+	2 - Bidirecional:
+	- Ir na classe que não mapeia a FK
+	- Adicionar o atributo de referência para a classe da relação
+	- Adicionar a anotação @OneToOne com o mappedBy com o nome do atributo definido em 1;
+	
+	

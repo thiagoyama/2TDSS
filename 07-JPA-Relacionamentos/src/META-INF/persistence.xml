@@ -11,7 +11,7 @@
 				create -> apaga e cria as tabelas
 				validate -> valida se as tabelas estão de acordo com as classes
 			 -->
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.Oracle12cDialect" />
