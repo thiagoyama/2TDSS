@@ -6,6 +6,7 @@ import br.com.fiap.tds.dao.GrupoChallengeDao;
 import br.com.fiap.tds.dao.impl.GrupoChallengeDaoImpl;
 import br.com.fiap.tds.entity.Aluno;
 import br.com.fiap.tds.entity.GrupoChallenge;
+import br.com.fiap.tds.entity.NanoCourse;
 import br.com.fiap.tds.exception.EntityNotFoundException;
 import br.com.fiap.tds.singleton.EntityManagerFactorySingleton;
 
@@ -24,16 +25,21 @@ public class PesquisaTeste {
 			GrupoChallenge grupo = dao.search(1);
 			
 			//Exibir o nome do grupo
-			System.out.println(grupo.getNome());
+			System.out.println("Grupo: " + grupo.getNome());
 			
 			//Exibir o nome do projeto
-			System.out.println(grupo.getProjeto().getNome());
+			System.out.println("Projeto: " + grupo.getProjeto().getNome());
 			
 			//Exibir o nome dos alunos que pertencem ao grupo
+			System.out.println("Alunos:");
 			for (Aluno aluno : grupo.getAlunos()) {
 				System.out.println(aluno.getNome());
-				//Exibir o nome dos cursos dos alunos
 				
+				//Exibir o nome dos cursos dos alunos
+				System.out.println("Cursos:");
+				for (NanoCourse nano : aluno.getCursos()) {
+					System.out.println(nano.getNome());
+				}
 			}
 			
 		}catch (EntityNotFoundException e) {
