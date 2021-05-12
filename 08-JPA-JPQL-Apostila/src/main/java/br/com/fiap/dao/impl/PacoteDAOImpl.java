@@ -22,4 +22,26 @@ public class PacoteDAOImpl extends GenericDAOImpl<Pacote,Integer> implements Pac
 		return query.getResultList();
 	}
 
+	@Override
+	public List<Object[]> buscarPorPrecoMenor(float preco) {
+		return em.createQuery("select p.descricao, p.qtdDias from Pacote p where p.preco < :pPreco", Object[].class)
+				.setParameter("pPreco", preco)
+				.getResultList();
+	}
+
+	//Utilizar o construtor para obter um Pacote com os valores que queremos
+	@Override
+	public List<Pacote> buscarPorPrecoMenor2(float preco) {
+		return em.createQuery("select new Pacote(p.descricao, p.qtdDias) from Pacote p where p.preco < :pPreco", Pacote.class)
+				.setParameter("pPreco", preco)
+				.getResultList();
+	}
+
+	@Override
+	public List<String> buscarPorPrecoMenor3(float preco) {
+		return em.createQuery("select p.descricao from Pacote p where p.preco < :p", String.class)
+				.setParameter("p", preco)
+				.getResultList();
+	}
+
 }

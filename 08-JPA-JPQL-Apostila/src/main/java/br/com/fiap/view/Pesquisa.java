@@ -83,6 +83,21 @@ public class Pesquisa {
 		System.out.println("Listar clientes com paginação");
 		clienteDao.listar(0, 2).forEach(c -> System.out.println(c.getNome()));
 		
+		//Buscar pacotes por preço menor, obtendo uma lista de vetor de objetos
+		List<Object[]> listaObjetos = pacoteDao.buscarPorPrecoMenor(5000);
+		System.out.println("Buscar pacotes por preço menor, obtendo uma lista de vetor de objetos");
+		listaObjetos.forEach(vetor -> System.out.println(vetor[0] + " " + vetor[1]));
+		
+		//Buscar pacotes por preço menor, retornando uma lista de pacotes com somente a descrição e a qtdDias preenchidos
+		pacotes = pacoteDao.buscarPorPrecoMenor2(10000);
+		System.out.println("Buscar pacotes por preço menor, retornando uma lista de pacotes");
+		pacotes.forEach(p -> System.out.println(p.getDescricao() + " " + p.getQtdDias() + " " + p.getDataSaida()));
+		
+		//Buscar pacotes por preço menor, retornando a descrição em uma lista de string
+		List<String> listaString = pacoteDao.buscarPorPrecoMenor3(5000);
+		System.out.println("Buscar pacote por preço menor, retornando uma lista de string");
+		listaString.forEach(s -> System.out.println(s));
+		
 		//Fechar
 		em.close();
 		EntityManagerFactorySingleton.getInstance().close();
