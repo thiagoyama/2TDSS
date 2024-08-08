@@ -1,4 +1,4 @@
-package br.com.fiap.aula04.exercicio.model;
+package br.com.fiap.aula04.exercicio.model.blog;
 
 import br.com.fiap.aula04.exercicio.dto.comentario.CadastroComentarioDto;
 import jakarta.persistence.*;

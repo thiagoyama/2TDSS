@@ -2,7 +2,7 @@ package br.com.fiap.aula04.exercicio.controller;
 
 import br.com.fiap.aula04.exercicio.dto.tag.CadastroTagDto;
 import br.com.fiap.aula04.exercicio.dto.tag.DetalhesTagDto;
-import br.com.fiap.aula04.exercicio.model.Tag;
+import br.com.fiap.aula04.exercicio.model.blog.Tag;
 import br.com.fiap.aula04.exercicio.repository.TagRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

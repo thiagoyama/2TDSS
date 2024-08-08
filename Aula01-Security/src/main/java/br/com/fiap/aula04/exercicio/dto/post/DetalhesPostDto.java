@@ -1,11 +1,10 @@
 package br.com.fiap.aula04.exercicio.dto.post;
 
 import br.com.fiap.aula04.exercicio.dto.tag.DetalhesTagDto;
-import br.com.fiap.aula04.exercicio.model.Post;
+import br.com.fiap.aula04.exercicio.model.blog.Post;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 public record DetalhesPostDto(Long codigo, String titulo, String conteudo,
                               String autor, LocalDateTime dataCriacao, LocalDateTime dataPublicacao,

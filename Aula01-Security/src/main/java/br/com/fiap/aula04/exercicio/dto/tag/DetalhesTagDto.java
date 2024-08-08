@@ -1,6 +1,6 @@
 package br.com.fiap.aula04.exercicio.dto.tag;
 
-import br.com.fiap.aula04.exercicio.model.Tag;
+import br.com.fiap.aula04.exercicio.model.blog.Tag;
 
 public record DetalhesTagDto(Long id, String nome) {
     public DetalhesTagDto(Tag tag) {

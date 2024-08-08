@@ -1,8 +1,7 @@
 package br.com.fiap.aula04.exercicio.dto.comentario;
 
 import br.com.fiap.aula04.exercicio.dto.post.DetalhesPostDto;
-import br.com.fiap.aula04.exercicio.model.Comentario;
-import br.com.fiap.aula04.exercicio.model.DetalhesPost;
+import br.com.fiap.aula04.exercicio.model.blog.Comentario;
 
 import java.time.LocalDateTime;
 

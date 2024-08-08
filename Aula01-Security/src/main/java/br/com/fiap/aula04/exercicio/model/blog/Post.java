@@ -1,4 +1,4 @@
-package br.com.fiap.aula04.exercicio.model;
+package br.com.fiap.aula04.exercicio.model.blog;
 
 import br.com.fiap.aula04.exercicio.dto.post.AtualizacaoPostDto;
 import br.com.fiap.aula04.exercicio.dto.post.CadastroPostDto;
