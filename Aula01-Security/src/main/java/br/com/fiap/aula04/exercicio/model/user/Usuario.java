@@ -1,5 +1,6 @@
 package br.com.fiap.aula04.exercicio.model.user;
 
+import br.com.fiap.aula04.exercicio.dto.usuario.CadastroUsuarioDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,11 @@ public class Usuario implements UserDetails {
 
     @Column(name="ds_senha", nullable = false)
     private String senha;
+
+    public Usuario(String login,String senha){
+        this.login = login;
+        this.senha = senha;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
