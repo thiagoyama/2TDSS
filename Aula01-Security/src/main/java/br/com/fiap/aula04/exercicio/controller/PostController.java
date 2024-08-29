@@ -10,6 +10,15 @@ import br.com.fiap.aula04.exercicio.model.blog.Post;
 import br.com.fiap.aula04.exercicio.repository.ComentarioRepository;
 import br.com.fiap.aula04.exercicio.repository.PostRepository;
 import br.com.fiap.aula04.exercicio.repository.TagRepository;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +31,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("posts")
+@Tag(name = "Post", description = "Realiza ações de CRUD do Post")
 public class PostController {
 
     @Autowired
@@ -35,6 +45,13 @@ public class PostController {
 
     @DeleteMapping("{idPost}/tags")
     @Transactional
+    @Operation(summary = "Remove todas as Tag de um Post", description = "Remove todas as Tag associadas a um Post")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Tags removidas com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Id do post não encontrado"),
+            @ApiResponse(responseCode = "403", description = "Usuário não autenticado")
+    })
+    @Parameter(name = "idPost", description = "Id do post que terá as tags removidas", required = true)
     public ResponseEntity<Void> deleteTags(@PathVariable("idPost") Long idPost){
         var post = postRepository.getReferenceById(idPost);
         post.getTags().clear();
@@ -43,6 +60,16 @@ public class PostController {
 
     @DeleteMapping("{idPost}/tags/{idTag}")
     @Transactional
+    @Operation(summary = "Remove uma Tag de um Post", description = "Remove uma Tag associada a um Post")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Tag removida com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Id do post ou da tag não encontrada"),
+            @ApiResponse(responseCode = "403", description = "Usuário não autenticado")
+    })
+    @Parameters({
+            @Parameter(name = "idPost", description = "Id do post que terá a tag removida"),
+            @Parameter(name = "idTag", description = "Id da tag que será removida do post")
+    })
     public ResponseEntity<Void> delete(@PathVariable("idPost") Long idPost,
                                        @PathVariable("idTag") Long idTag) {
         var post = postRepository.getReferenceById(idPost);
@@ -99,6 +126,13 @@ public class PostController {
 
     @PutMapping("{id}")
     @Transactional
+    @Operation(summary = "Atualiza um Post", description = "Atualiza o titulo e/ou autor do post")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Post atualizado com sucesso",
+                    content = @Content(schema = @Schema(implementation = DetalhesPostDto.class), mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "Id do post não encontrado", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Usuário não autenticado",content = @Content)
+    })
     public ResponseEntity<DetalhesPostDto> put(@PathVariable("id") Long id, @RequestBody AtualizacaoPostDto dto){
         var post = postRepository.getReferenceById(id);
         post.atualizar(dto);
@@ -107,6 +141,7 @@ public class PostController {
 
     @DeleteMapping("{id}")
     @Transactional
+    @Hidden
     public ResponseEntity<Void> delete(@PathVariable("id") Long id){
         postRepository.deleteById(id);
         return ResponseEntity.noContent().build();
