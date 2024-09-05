@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+</head>
+<body>
+
+    <h1>Calculadora de Média - FIAP</h1>
+
+    <p th:if="!${#strings.isEmpty(mediaFinal)}">
+        A média final é: <span th:text="${mediaFinal}"></span>
+        <span th:text="${mediaFinal > 6 ? 'Passou de ano!' : 'Tente novamente..'}"></span>
+        <br>
+        Média 1º Semestre: <span th:text="${dis.media}"></span><br>
+        GS: <span th:text="${dis.gs}"></span><br>
+        CP: <span th:text="${dis.cp}"></span><br>
+        Challenge: <span th:text="${dis.challenge}"></span><br>
+    </p>
+
+    <form method="post" action="/calculadora/media">
+        <div>
+            <label>Média 1º Semestre</label>
+            <input type="number" name="media">
+        </div>
+        <div>
+            <label>Média Checkpoint</label>
+            <input type="number" name="cp">
+        </div>
+        <div>
+            <label>Nota Global Solution</label>
+            <input type="number" name="gs">
+        </div>
+        <div>
+            <label>Nota Challenge</label>
+            <input type="number" name="challenge">
+        </div>
+        <button type="submit">Passou de ano?</button>
+    </form>
+</body>
+</html>

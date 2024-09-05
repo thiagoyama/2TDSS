@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Produto</title>
@@ -7,6 +7,8 @@
 <body>
 
     <h1>Cadastro de Produto</h1>
+    <p th:text="${nome}"></p>
+    <p th:text="${preco}"></p>
 
     <form action="/produto/cadastrar" method="post">
         <label for="nome">Nome</label>
