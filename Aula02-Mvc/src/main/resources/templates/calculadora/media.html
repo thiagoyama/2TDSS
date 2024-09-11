@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>Calculadora</title>
 </head>
 <body>
-
+<div layout:fragment="conteudo">
     <h1>Calculadora de Média - FIAP</h1>
 
     <p th:if="!${#strings.isEmpty(mediaFinal)}">
@@ -19,23 +21,24 @@
     </p>
 
     <form method="post" action="/calculadora/media">
-        <div>
-            <label>Média 1º Semestre</label>
-            <input type="number" name="media">
+        <div class="mb-3">
+            <label class="form-label">Média 1º Semestre</label>
+            <input type="number" name="media" class="form-control">
         </div>
-        <div>
-            <label>Média Checkpoint</label>
-            <input type="number" name="cp">
+        <div class="mb-3">
+            <label class="form-label">Média Checkpoint</label>
+            <input type="number" name="cp" class="form-control">
         </div>
-        <div>
-            <label>Nota Global Solution</label>
-            <input type="number" name="gs">
+        <div class="mb-3">
+            <label class="form-label">Nota Global Solution</label>
+            <input type="number" name="gs"class="form-control">
         </div>
-        <div>
-            <label>Nota Challenge</label>
-            <input type="number" name="challenge">
+        <div class="mb-3">
+            <label class="form-label">Nota Challenge</label>
+            <input type="number" name="challenge"class="form-control">
         </div>
-        <button type="submit">Passou de ano?</button>
+        <button type="submit" class="btn btn-outline-primary">Passou de ano?</button>
     </form>
+</div>
 </body>
 </html>

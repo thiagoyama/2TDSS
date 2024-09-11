@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
-
+<div layout:fragment="conteudo">
     <h1>Olá Mundo Spring MVC</h1>
     <div>
         <a th:href="@{/produto/cadastrar}">Cadastro de Produto</a>
         <a th:href="@{/calculadora/media}">Calculadora de média</a>
     </div>
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</div>
 </body>
 </html>
