@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Livro</title>
+</head>
+<body>
+<div class="container" layout:fragment="conteudo">
+    <h1>Cadastro de Livro</h1>
+    <div th:if="!${#strings.isEmpty(msg)}" class="alert alert-success">
+        <span th:text="${msg}"></span>
+    </div>
+    <form th:action="@{/livro/cadastrar}" method="post" th:object="${livro}">
+        <div class="mb-3">
+            <label class="form-label">Título</label>
+            <input type="text" th:field="*{titulo}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Sinopse</label>
+            <textarea th:field="*{sinopse}" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Preço</label>
+            <input type="number" class="form-control" th:field="*{preco}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">ISBN</label>
+            <input class="form-control" type="text" th:field="*{isbn}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Número de Páginas</label>
+            <input class="form-control" type="number" th:field="*{paginas}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Data Publicação</label>
+            <input type="date" class="form-control" th:field="*{dataPublicacao}">
+        </div>
+        <div class="mb-3">
+            <input type="checkbox" th:field="*{disponivel}" >
+            <label class="form-label">Disponível</label>
+        </div>
+        <button class="btn btn-success">Cadastrar</button>
+    </form>
+</div>
+</body>
+</html>
