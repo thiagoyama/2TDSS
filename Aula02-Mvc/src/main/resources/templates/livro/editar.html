@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar de Livro</title>
+</head>
+<body>
+<div class="container" layout:fragment="conteudo">
+    <h1>Edição de Livro</h1>
+
+    <form th:action="@{/livro/editar}" method="post" th:object="${livro}">
+        <input hidden="hidden" th:field="*{id}">
+        <div class="mb-3">
+            <label class="form-label">Título</label>
+            <input type="text" th:field="*{titulo}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Sinopse</label>
+            <textarea th:field="*{sinopse}" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Preço</label>
+            <input type="number" class="form-control" th:field="*{preco}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">ISBN</label>
+            <input class="form-control" type="text" th:field="*{isbn}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Número de Páginas</label>
+            <input class="form-control" type="number" th:field="*{paginas}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Data Publicação</label>
+            <input type="text" class="form-control" th:field="*{dataPublicacao}">
+        </div>
+        <div class="mb-3">
+            <input type="checkbox" th:field="*{disponivel}" >
+            <label class="form-label">Disponível</label>
+        </div>
+        <button class="btn btn-success">Editar</button>
+    </form>
+</div>
+</body>
+</html>

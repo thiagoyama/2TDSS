@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Livros</title>
+</head>
+<body>
+<div class="container" layout:fragment="conteudo">
+    <h1>Lista de Livros</h1>
+    <div th:if="!${#strings.isEmpty(msg)}" class="alert alert-success">
+        <span th:text="${msg}"></span>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>Título</th>
+            <th>Sinopse</th>
+            <th>Data de Publicação</th>
+            <th>Disponível</th>
+            <th>Número de páginas</th>
+            <th>Preço</th>
+            <th></th>
+        </tr>
+        <tr th:each="churros:${books}">
+            <td th:text="${churros.titulo}"></td>
+            <td th:text="${churros.sinopse}"></td>
+            <td th:text="${#temporals.format(churros.dataPublicacao, 'dd/MM/yyyy')}"></td>
+            <td th:text="${churros.disponivel?'Sim':'Não'}"></td>
+            <td th:text="${churros.paginas}"></td>
+            <td th:text="${#numbers.formatDecimal(churros.preco, 1, 2)}"></td>
+            <td>
+                <a th:href="@{/livro/editar/}+${churros.id}">Editar</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
