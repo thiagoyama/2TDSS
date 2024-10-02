@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("livro")
@@ -18,13 +19,20 @@ public class LivroController {
     @Autowired
     private LivroRepository livroRepository;
 
+    @PostMapping("excluir")
+    @Transactional
+    public String remover(Long idBook, RedirectAttributes redirectAttributes){
+        livroRepository.deleteById(idBook);
+        redirectAttributes.addFlashAttribute("msg", "Livro removido!");
+        return "redirect:/livro/listar";
+    }
+
     @PostMapping("editar")
     @Transactional
-    public String editar(Livro livro, Model model){
+    public String editar(Livro livro, RedirectAttributes redirectAttributes){
         livroRepository.save(livro);
-        model.addAttribute("msg", "Livro atualizado");
-        model.addAttribute("books", livroRepository.findAll());
-        return "livro/lista";
+        redirectAttributes.addFlashAttribute("msg", "Livro atualizado");
+        return "redirect:/livro/listar";
     }
 
     @GetMapping("editar/{id}")
@@ -49,10 +57,10 @@ public class LivroController {
 
     @PostMapping("cadastrar")
     @Transactional
-    public String cadastrar(Livro livro, Model model){
+    public String cadastrar(Livro livro, RedirectAttributes redirectAttributes){
         livroRepository.save(livro);
-        model.addAttribute("msg", "Livro registrado!");
-        return "livro/cadastro";
+        redirectAttributes.addFlashAttribute("msg", "Livro registrado!");
+        return "redirect:/livro/cadastrar";
     }
 
 }

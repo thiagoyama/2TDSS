@@ -30,29 +30,31 @@
             <td th:text="${churros.paginas}"></td>
             <td th:text="${#numbers.formatDecimal(churros.preco, 1, 2)}"></td>
             <td>
-                <a th:href="@{/livro/editar/}+${churros.id}">Editar</a>
+                <a th:href="@{/livro/editar/}+${churros.id}" class="btn btn-sm btn-primary">Editar</a>
+                <button th:onclick="|livroId.value = ${churros.id}|" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Excluir
+                </button>
             </td>
         </tr>
     </table>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    Deseja realmente excluir o livro?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <form th:action="@{/livro/excluir}" method="post">
+                        <input type="hidden" id="livroId" name="idBook">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger">Sim</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -28,5 +28,7 @@ public class Livro {
     private Boolean disponivel;
     @Column(name="dt_publicacao")
     private LocalDate dataPublicacao;
+    @Column(name="ds_genero")
+    private Genero genero;
 
 }
