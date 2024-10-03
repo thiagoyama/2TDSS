@@ -41,6 +41,12 @@
             <input type="checkbox" th:field="*{disponivel}" >
             <label class="form-label">Disponível</label>
         </div>
+        <div class="mb-3">
+            <label class="form-label">Genero</label>
+            <select th:field="*{genero}" class="form-control">
+                <option th:each="churros :${valorGenero}" th:value="${churros}" th:text="${churros.label}"></option>
+            </select>
+        </div>
         <button class="btn btn-success">Cadastrar</button>
     </form>
 </div>

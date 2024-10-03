@@ -1,5 +1,6 @@
 package br.com.fiap.mvc.controller;
 
+import br.com.fiap.mvc.model.Genero;
 import br.com.fiap.mvc.model.Livro;
 import br.com.fiap.mvc.respository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class LivroController {
     public String editar(@PathVariable("id") Long id, Model model){
         //Pesquisar o livro pelo id e enviar o livro para a view
         model.addAttribute("livro", livroRepository.findById(id));
+        model.addAttribute("valorGenero", Genero.values());
         //Retornar a view
         return "livro/editar";
     }
@@ -51,7 +53,9 @@ public class LivroController {
     }
 
     @GetMapping("cadastrar")
-    public String cadastrar(Livro livro){
+    public String cadastrar(Livro livro, Model model){
+        //Enviar as constantes para a página
+        model.addAttribute("valorGenero", Genero.values());
         return "livro/cadastro";
     }
 
