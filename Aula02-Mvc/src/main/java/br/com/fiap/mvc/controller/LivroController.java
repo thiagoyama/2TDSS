@@ -3,10 +3,12 @@ package br.com.fiap.mvc.controller;
 import br.com.fiap.mvc.model.Genero;
 import br.com.fiap.mvc.model.Livro;
 import br.com.fiap.mvc.respository.LivroRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +32,13 @@ public class LivroController {
 
     @PostMapping("editar")
     @Transactional
-    public String editar(Livro livro, RedirectAttributes redirectAttributes){
+    public String editar(@Valid Livro livro, BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes,
+                         Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("valorGenero", Genero.values());
+            return "livro/editar";
+        }
         livroRepository.save(livro);
         redirectAttributes.addFlashAttribute("msg", "Livro atualizado");
         return "redirect:/livro/listar";
@@ -61,7 +69,14 @@ public class LivroController {
 
     @PostMapping("cadastrar")
     @Transactional
-    public String cadastrar(Livro livro, RedirectAttributes redirectAttributes){
+    public String cadastrar(@Valid Livro livro,
+                            BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes,
+                            Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("valorGenero", Genero.values());
+            return "livro/cadastro"; //nome da página
+        }
         livroRepository.save(livro);
         redirectAttributes.addFlashAttribute("msg", "Livro registrado!");
         return "redirect:/livro/cadastrar";
