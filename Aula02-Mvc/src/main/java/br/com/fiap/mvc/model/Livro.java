@@ -48,4 +48,8 @@ public class Livro {
     @Column(name="ds_genero")
     private Genero genero;
 
+    @ManyToOne
+    @JoinColumn(name = "cd_editora")
+    private Editora editora;
+
 }

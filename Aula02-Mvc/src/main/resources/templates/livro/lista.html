@@ -21,6 +21,7 @@
             <th>Número de páginas</th>
             <th>Preço</th>
             <th>Gênero</th>
+            <th>Editora</th>
             <th></th>
         </tr>
         <tr th:each="churros:${books}">
@@ -30,7 +31,8 @@
             <td th:text="${churros.disponivel?'Sim':'Não'}"></td>
             <td th:text="${churros.paginas}"></td>
             <td th:text="${#numbers.formatDecimal(churros.preco, 1, 2)}"></td>
-            <td th:text="${churros.genero}"></td>
+            <td th:text="${churros.genero?.label}"></td>
+            <td th:text="${churros.editora?.nome}"></td>
             <td>
                 <a th:href="@{/livro/editar/}+${churros.id}" class="btn btn-sm btn-primary">Editar</a>
                 <button th:onclick="|livroId.value = ${churros.id}|" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">

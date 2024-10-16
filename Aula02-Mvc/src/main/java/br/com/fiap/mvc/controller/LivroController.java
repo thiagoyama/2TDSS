@@ -2,6 +2,7 @@ package br.com.fiap.mvc.controller;
 
 import br.com.fiap.mvc.model.Genero;
 import br.com.fiap.mvc.model.Livro;
+import br.com.fiap.mvc.respository.EditoraRepository;
 import br.com.fiap.mvc.respository.LivroRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class LivroController {
     @Autowired
     private LivroRepository livroRepository;
 
+    @Autowired
+    private EditoraRepository editoraRepository;
+
     @PostMapping("excluir")
     @Transactional
     public String remover(Long idBook, RedirectAttributes redirectAttributes){
@@ -37,6 +41,7 @@ public class LivroController {
                          Model model){
         if (bindingResult.hasErrors()){
             model.addAttribute("valorGenero", Genero.values());
+            model.addAttribute("editoras", editoraRepository.findAll());
             return "livro/editar";
         }
         livroRepository.save(livro);
@@ -49,6 +54,7 @@ public class LivroController {
         //Pesquisar o livro pelo id e enviar o livro para a view
         model.addAttribute("livro", livroRepository.findById(id));
         model.addAttribute("valorGenero", Genero.values());
+        model.addAttribute("editoras", editoraRepository.findAll());
         //Retornar a view
         return "livro/editar";
     }
@@ -64,6 +70,7 @@ public class LivroController {
     public String cadastrar(Livro livro, Model model){
         //Enviar as constantes para a página
         model.addAttribute("valorGenero", Genero.values());
+        model.addAttribute("editoras", editoraRepository.findAll());
         return "livro/cadastro";
     }
 
@@ -75,6 +82,7 @@ public class LivroController {
                             Model model){
         if (bindingResult.hasErrors()){
             model.addAttribute("valorGenero", Genero.values());
+            model.addAttribute("editoras", editoraRepository.findAll());
             return "livro/cadastro"; //nome da página
         }
         livroRepository.save(livro);

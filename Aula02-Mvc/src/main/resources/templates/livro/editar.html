@@ -62,6 +62,13 @@
                 <option th:each="churros :${valorGenero}" th:value="${churros}" th:text="${churros.label}"></option>
             </select>
         </div>
+        <div class="mb-3">
+            <label class="form-label">Editora</label>
+            <select th:field="*{editora.id}" class="form-select">
+                <option value="">Selecione</option>
+                <option th:each="e:${editoras}"th:value="${e.id}" th:text="${e.nome}"></option>
+            </select>
+        </div>
         <button class="btn btn-success">Editar</button>
     </form>
 </div>
