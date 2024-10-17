@@ -10,10 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -60,9 +57,9 @@ public class LivroController {
     }
 
     @GetMapping("listar") //localhost:8080/livro/listar
-    public String listar(Model model){
+    public String listar(@RequestParam(defaultValue = "") String titulo, Model model){
         //Enviar a lista de livros para a view
-        model.addAttribute("books", livroRepository.findAll());
+        model.addAttribute("books", livroRepository.findByTituloContainingIgnoreCase(titulo));
         return "livro/lista";
     }
 

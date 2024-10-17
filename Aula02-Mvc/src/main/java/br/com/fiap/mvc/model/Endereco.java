@@ -1,6 +1,7 @@
 package br.com.fiap.mvc.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Endereco {
     @Column(name="cd_endereco")
     private Long id;
 
+    @NotBlank
     @Column(name = "ds_logradouro", nullable = false, length = 150)
     private String logradouro;
 

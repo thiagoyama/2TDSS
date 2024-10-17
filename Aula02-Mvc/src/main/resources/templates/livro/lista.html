@@ -32,7 +32,9 @@
             <td th:text="${churros.paginas}"></td>
             <td th:text="${#numbers.formatDecimal(churros.preco, 1, 2)}"></td>
             <td th:text="${churros.genero?.label}"></td>
-            <td th:text="${churros.editora?.nome}"></td>
+            <td>
+                <a th:text="${churros.editora?.nome}" th:href="@{/editora/dados/}+${churros.editora?.id}"></a>
+            </td>
             <td>
                 <a th:href="@{/livro/editar/}+${churros.id}" class="btn btn-sm btn-primary">Editar</a>
                 <button th:onclick="|livroId.value = ${churros.id}|" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">

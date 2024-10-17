@@ -1,8 +1,10 @@
 package br.com.fiap.mvc.controller;
 
 import br.com.fiap.mvc.model.Editora;
+import br.com.fiap.mvc.model.Endereco;
 import br.com.fiap.mvc.respository.EditoraRepository;
 import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,13 @@ public class EditoraController {
 
     @Autowired
     private EditoraRepository editoraRepository;
+
+    @GetMapping("/dados/{id}")
+    public String dados(@PathParam("id") Long id, Model model) {
+        //Pesquisar a editora e enviar para a página
+        model.addAttribute("editora", editoraRepository.findById(id));
+        return "editora/detalhes";
+    }
 
     @GetMapping("cadastrar")
     public String cadastrar(Model model){
