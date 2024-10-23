@@ -47,7 +47,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Data Publicação</label>
-            <input type="date" class="form-control" th:field="*{dataPublicacao}">
+            <input type="text" class="form-control" th:field="*{dataPublicacao}">
             <p th:if="${#fields.hasErrors('dataPublicacao')}" class="text text-danger"
                th:errors="*{dataPublicacao}"></p>
         </div>

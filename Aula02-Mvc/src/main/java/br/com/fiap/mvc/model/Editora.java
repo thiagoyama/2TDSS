@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name="TB_EDITORA")
 @Getter @Setter
@@ -34,5 +36,8 @@ public class Editora {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cd_endereco")
     private Endereco endereco;
+
+    @OneToMany(mappedBy = "editora")
+    private List<Livro> livros;
 
 }

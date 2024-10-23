@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Editora</title>
+</head>
+<body>
+<div class="container" layout:fragment="conteudo">
+    <h1 th:text="${editora.nome}"></h1>
+    <table class="table">
+        <tr>
+            <th>CNPJ</th>
+            <th>E-mail</th>
+            <th>Logradouro</th>
+            <th>Número</th>
+            <th>CEP</th>
+        </tr>
+        <tr>
+            <td th:text="${editora.cnpj}"></td>
+            <td th:text="${editora.email}"></td>
+            <td th:text="${editora?.endereco.logradouro}"></td>
+            <td th:text="${editora?.endereco.numero}"></td>
+            <td th:text="${editora?.endereco.cep}"></td>
+        </tr>
+    </table>
+    <h2>Livros (<span th:text="${editora.livros.size}"></span>)</h2>
+    <div class="row row-cols-4 row-cols-md-4 g-4">
+        <div class="col" th:each="livro : ${editora.livros}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${livro.titulo}"></h5>
+                    <p class="card-text">
+                        <p th:text="${livro.sinopse}"></p>
+                        <p><span th:text="${livro.paginas}"></span> Páginas </p>
+                        <p>Data de Publicação: <span th:text="${livro.dataPublicacao}"></span></p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+</body>
+</html>

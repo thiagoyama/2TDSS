@@ -4,13 +4,13 @@ import br.com.fiap.mvc.model.Editora;
 import br.com.fiap.mvc.model.Endereco;
 import br.com.fiap.mvc.respository.EditoraRepository;
 import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,9 +23,9 @@ public class EditoraController {
     private EditoraRepository editoraRepository;
 
     @GetMapping("/dados/{id}")
-    public String dados(@PathParam("id") Long id, Model model) {
+    public String dados(@PathVariable("id") Long id, Model model) {
         //Pesquisar a editora e enviar para a página
-        model.addAttribute("editora", editoraRepository.findById(id));
+        model.addAttribute("editora", editoraRepository.getReferenceById(id));
         return "editora/detalhes";
     }
 
