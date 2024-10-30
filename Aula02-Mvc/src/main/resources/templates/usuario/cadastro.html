@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:formth="http://www.w3.org/1999/html"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Registre-se!</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+
+    <h1>Registre-se!</h1>
+    <form th:object="${usuario}" th:action="@{/usuario/cadastrar}" method="post">
+        <div class="mb-3">
+            <label>Username</label>
+            <input th:field="*{username}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Password</label>
+            <input th:field="*{password}"class="form-control" type="password">
+        </div>
+        <div class="form-group">
+            <label>Roles:</label><br>
+            <div th:each="role : ${roles}">
+                <input type="checkbox" th:field="*{roles}" th:value="${role.name}">
+                <label th:text="${role.label}"></label><br>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+</body>
+</html>
