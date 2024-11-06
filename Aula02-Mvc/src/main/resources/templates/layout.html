@@ -32,6 +32,9 @@
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
+                <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a class="nav-link" th:href="@{/usuario/registrar}">Registro de usuário</a>
+                </li>
             </ul>
             <form class="d-flex" th:action="@{/livro/listar}" method="get">
                 <input class="form-control me-2" type="search" name="titulo"  placeholder="Digite o título do livro" aria-label="Search">
